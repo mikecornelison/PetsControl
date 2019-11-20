@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Pets from './components/pets';
+import NewPet from './components/newPet';
 
 class App extends Component {
 	state = {
@@ -17,7 +18,10 @@ class App extends Component {
 
 	render() {
 	return (
-	    <Pets pets={this.state.pets} />
+	    <div>	
+	        <NewPet />
+		<Pets pets={this.state.pets} />
+	    </div>	
 	);
 	}
 }

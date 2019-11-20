@@ -9,7 +9,7 @@ const Pets = ({ pets }) => {
           <div class="card-body">
 	    <h5 class="card_title">{pet.name}</h5>
 	    <h6 class="card-subtitle mb-2 text-muted">{pet.type}</h6>
-	    <p class="card-text">Pet description goes here.</p>
+	    <p class="card-text">{pet.description || "No description given"}</p>
 	  </div>
 	</div>
       ))}
