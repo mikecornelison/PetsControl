@@ -8,7 +8,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-	fetch('http://192.168.1.33:5000/pets/')
+	fetch('http://192.168.1.23:5000/pets/')
 	    .then(res => res.json())
 	    .then((data) => {
 		    this.setState({ pets: data })
@@ -16,11 +16,17 @@ class App extends Component {
 	    .catch(console.log)
 	}
 
+	add(pet) {
+	 this.setState({
+		pets:  [...this.state.pets, pet]
+	});
+	}
+
 	render() {
 	return (
 	    <div>	
-	        <NewPet />
-		<Pets pets={this.state.pets} />
+	      <NewPet add={this.add.bind(this)} />
+	      <Pets pets={this.state.pets} />
 	    </div>	
 	);
 	}
