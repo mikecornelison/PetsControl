@@ -8,7 +8,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-	fetch('http://192.168.1.23:5000/pets/')
+	fetch('http://192.168.1.27:5000/pets/')
 	    .then(res => res.json())
 	    .then((data) => {
 		    this.setState({ pets: data })
