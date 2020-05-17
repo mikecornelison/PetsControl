@@ -1,6 +1,6 @@
 import React from 'react'
 
-class NewPet extends React.Component {
+class PetForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,7 +15,7 @@ class NewPet extends React.Component {
       body: data,
     });
 
-    this.props.add(Object.fromEntries(data));
+    this.props.submit(Object.fromEntries(data));
   }
 
   render() {
@@ -23,11 +23,11 @@ class NewPet extends React.Component {
     <form className="form" onSubmit={this.handleSubmit}>
       <div className="form-group">
         <label htmlFor="name">Pet name</label>
-        <input className="form-control" id="name" name="name" type="text" />
+        <input className="form-control" id="name" name="name" type="text" defaultValue={this.props.petToEdit.name || ""} />
       </div>
       <div className="form-group">    
         <label htmlFor="type">Type of pet</label>
-        <input className="form-control"  id="type" name="type" type="text" />
+        <input className="form-control"  id="type" name="type" type="text" defaultValue={this.props.petToEdit.type || ""} />
       </div>
       <button className="btn btn-primary">Submit</button>
     </form>
@@ -35,4 +35,4 @@ class NewPet extends React.Component {
   }
 }
 
-export default NewPet;
+export default PetForm;

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Pets from './components/pets';
-import NewPet from './components/newPet';
+import PetForm from './components/petForm';
 
 class App extends Component {
 	state = {
-	    pets: []
+		pets: [],
+		petToEdit: {}
 	}
 
 	componentDidMount() {
@@ -16,17 +17,33 @@ class App extends Component {
 	    .catch(console.log)
 	}
 
-	add(pet) {
-	 this.setState({
-		pets:  [...this.state.pets, pet]
-	});
+	submit(pet) {
+		if(this.state.petToEdit === {}) {
+			this.setState({
+				pets:  [...this.state.pets, pet],
+			});
+		}
+		else
+		{
+			this.setState(prevState => ({
+				pets: prevState.pets.map(
+					el => el.name === this.state.petToEdit.name ? pet: el
+				)
+			}));
+		}
+	}
+
+	edit(pet) {
+		this.setState({
+			petToEdit: pet,
+		});
 	}
 
 	render() {
 	return (
 	    <div>	
-	      <NewPet add={this.add.bind(this)} />
-	      <Pets pets={this.state.pets} />
+	      <PetForm submit={this.submit.bind(this)} petToEdit={this.state.petToEdit} />
+	      <Pets pets={this.state.pets} edit={this.edit.bind(this)} />
 	    </div>	
 	);
 	}
