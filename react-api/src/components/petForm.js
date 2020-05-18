@@ -10,8 +10,10 @@ class PetForm extends React.Component {
     event.preventDefault();
     const data = new FormData(event.target);
 
-    fetch('http://192.168.1.27:5000/pet/' + data.get('name'), {
-      method: 'POST',
+    const targetName = this.props.petToEdit.name || data.get('name');
+
+    fetch('http://192.168.1.27:5000/pet/' + targetName, {
+      method: this.props.petToEdit ? 'PUT' : 'POST',
       body: data,
     });
 
